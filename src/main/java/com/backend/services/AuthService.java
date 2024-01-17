@@ -40,16 +40,26 @@ public class AuthService {
     }
 
     @SneakyThrows
-    public AuthenticationResponse updateUser(UpdateUserDTO dto, String username, MultipartFile logo) throws CredentialException {
+    public AuthenticationResponse updateUser(UpdateUserDTO dto, String userId, MultipartFile logo) throws CredentialException {
+        AuthUser u = userService.findByUserId(userId);
         try {
-            userService.update(dto, username, logo);
+            authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            u.getUsername(),
+                            dto.getOldPassword()
+                    )
+            );
+            userService.update(dto, userId, logo);
         } catch (ChangeSetPersister.NotFoundException e) {
             e.printStackTrace();
         } catch (CredentialException e) {
             throw new CredentialException();
         }
-        AuthUser u = userService.findByUserId(username);
-        return authenticate(new AuthRequest(u.getUsername(), dto.getNewPassword()));
+
+        if (dto.getNewPassword() == null || dto.getNewPassword().isEmpty())
+        return authenticate(new AuthRequest(u.getUsername(), dto.getOldPassword()));
+        else  return authenticate(new AuthRequest(u.getUsername(), dto.getNewPassword()));
+
     }
 
     public boolean userExists(String name){

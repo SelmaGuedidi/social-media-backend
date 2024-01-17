@@ -28,7 +28,7 @@ public abstract class GenericService<T, R extends MongoRepository<T, String>> {
             sort = Sort.by(Sort.Direction.fromString("DESC"), "CreatedAt");
         }
         System.out.println(sort);
-        return PageRequest.of(req.getPageNumber(), req.getPageSize(), sort);
+        return PageRequest.of(req.getPageNumber(), Math.max(req.getPageSize(),1), sort);
     }
 
     @Transactional

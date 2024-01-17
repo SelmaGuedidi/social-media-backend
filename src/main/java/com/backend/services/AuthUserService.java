@@ -74,15 +74,12 @@ public class AuthUserService {
 
     public void update(UpdateUserDTO dto, String username, MultipartFile logo) throws ChangeSetPersister.NotFoundException, CredentialException{
         AuthUser u = this.findByUserId(username);
-        if (!encoder.encode(dto.getOldPassword()).equals(u.getPassword())) {
             userService.update(username, dto, logo);
-            if (dto.getNewPassword() != null)
+            if (dto.getNewPassword() != null && !dto.getNewPassword().isEmpty())
              u.setPassword(encoder.encode(dto.getNewPassword()));
 
             repository.save(u);
-        }
-        else
-            throw new CredentialException();
+
     }
 
     public void update(AuthUser u) {

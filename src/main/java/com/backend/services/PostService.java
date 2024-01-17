@@ -130,11 +130,9 @@ public class PostService extends GenericService<Post, PostRepository>{
         return repository.findByLikedByContains(id, pageable);
     }
 
-    public int getLatestPosts(String userId, String dateString){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy, h:mm:ss a");
-        LocalDate localDate = LocalDate.parse(dateString, formatter);
-
-        Date date = java.sql.Date.valueOf(localDate);
+    public int getLatestPosts(String userId, String str){
+        long timeInMillis = Long.parseLong(str);
+        Date date = new Date(timeInMillis);
 
         return repository.countByUserIdAndCreatedAtGreaterThanEqual(userId, date);
     }
