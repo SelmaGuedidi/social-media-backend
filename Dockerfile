@@ -14,5 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/target/*.jar /app/app.jar
 
-EXPOSE 8081
+EXPOSE 8080
+VOLUME /var/app
 ENTRYPOINT ["java", "-jar", "app.jar"]
