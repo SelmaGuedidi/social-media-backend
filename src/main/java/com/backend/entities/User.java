@@ -37,7 +37,6 @@ class User {
     Set<String> friendIds = new HashSet<>();
 
     @Builder.Default
-    @JsonIgnore
     private boolean deleted = false;
 
     public boolean getDeleted() {

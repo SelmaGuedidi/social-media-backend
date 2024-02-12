@@ -28,6 +28,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
     @Query(value = "{ 'deleted': false }")
     Page<Post> findAll(Pageable pageable);
 
+    @Query(value = "{ 'user._id': ?0, 'deleted': false }")
     List<Post> findByUserId(String id);
 
     int countByUserIdAndCreatedAtGreaterThanEqual(String userId, Date date);

@@ -45,6 +45,7 @@ public class UserController {
     @GetMapping("/all/posts")
     public Page<Post> getFriendsPosts(@RequestParam String userId,
                                       @ModelAttribute PagingRequest pagingRequest){
+        System.out.println(userService.getFriendsPosts(pagingRequest, userId));
         return userService.getFriendsPosts(pagingRequest, userId);
     }
 

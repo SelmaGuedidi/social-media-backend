@@ -84,7 +84,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("This Account has been banned for violating our guidelines."));
         }
     }
-    @Roles(UserRole.MODERATOR)
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id) {
         service.delete(id);
