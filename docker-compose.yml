@@ -1,0 +1,14 @@
+version: "1"
+services:
+  mongodb-container-compose:
+    image: mongo:latest
+    container_name: "mongo-container"
+    ports:
+      - 28000:27017
+  springboot-with-mongodb-container-compose:
+    image: app
+    container_name: "springboot-with-mongodb-container-compose"
+    ports:
+      - 8093:8080
+    links:
+      - mongodb-container-compose
