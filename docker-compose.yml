@@ -12,5 +12,3 @@ services:
       - 8093:8080
     links:
       - mongo-container-social-app
-      -
-
