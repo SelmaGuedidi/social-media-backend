@@ -1,14 +1,14 @@
 version: "1"
 services:
-  mongodb-container-compose:
+  mongo-container-social-app:
     image: mongo:latest
-    container_name: "mongo-container"
+    container_name: "mongo-container-social-app"
     ports:
       - 28000:27017
-  springboot-with-mongodb-container-compose:
-    image: app
-    container_name: "springboot-with-mongodb-container-compose"
+  social-media-app:
+    image: wwx2/social-media-app
+    container_name: "social-media-app"
     ports:
       - 8093:8080
     links:
-      - mongodb-container-compose
+      - mongo-container-social-app
