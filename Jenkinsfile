@@ -1,6 +1,7 @@
 pipeline {
   environment {
     imagename = "wwx2/social-media-app"
+    registryCredential = 'wwx2'
     dockerImage = ''
   }
   agent any
