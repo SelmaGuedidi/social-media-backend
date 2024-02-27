@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    imagename = "wwx2/social-media-app"
-    registryCredential = '60e7e442-5595-4d22-bf27-3dde9eca5367'
+    imagename = "selmaguedidi/social-media-app"
+    registryCredential = 'dockerhub_id'
     dockerImage = ''
   }
   agent any
