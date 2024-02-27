@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "selmaguedidi/social-media-app"
+    imagename = "SelmaGuedidi/social-media-app"
     registryCredential = 'job1'
     dockerImage = ''
   }
