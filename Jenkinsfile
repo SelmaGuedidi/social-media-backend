@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "selmaguedidi/social-media-app"
-    registryCredential = 'dockerhub_id'
+    registryCredential = 'job1'
     dockerImage = ''
   }
   agent any
